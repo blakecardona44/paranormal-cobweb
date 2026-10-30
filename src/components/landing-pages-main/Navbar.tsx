@@ -17,20 +17,20 @@ const navigation: NavItem[] = [
     name: 'About',
     current: false,
     children: [
-      { name: 'My Story and Services', href: '#my-story' },
+      { name: 'My Story and Services', href: '/#my-story' },
       {
         name: 'Wealth Management Global Investment Office',
-        href: '#client-service-team',
+        href: '/#client-service-team',
       },
-      { name: 'Thought Leadership', href: '#thought-list' },
+      { name: 'Thought Leadership', href: '/#thought-list' },
     ],
   },
   {
     name: 'Contact Me',
     current: false,
     children: [
-      { name: 'Start a Conversation', href: 'https://wa.me/14242793916' },
-      { name: 'Location', href: '#location' },
+      { name: 'Start a Conversation', href: 'https://wa.me/19492976131' },
+      { name: 'Location', href: '/#location' },
     ],
   },
 ];
@@ -244,16 +244,13 @@ const Navbar: React.FC = () => {
         <div className="hidden md:block">
           <ul className="flex text-black gap-4">
             <li className="after:content-[''] after:block after:w-0 after:h-[6px] w-fit after:transition-width after:bg-[#3182c1] after:duration-300 hover:after:w-full">
-              <a
-                href="#my-story"
-                className="py-[25px] text-xl font-bold cursor-pointer block"
-              >
+              <a href="/#my-story" className="py-[25px] text-xl font-bold cursor-pointer block">
                 About
               </a>
             </li>
             <li className="after:content-[''] after:block after:w-0 after:h-[6px] w-fit after:transition-width after:bg-[#3182c1] after:duration-300 hover:after:w-full">
               <a
-                href="https://wa.me/14242793916"
+                href="https://wa.me/19492976131"
                 target="_blank"
                 rel="noreferrer"
                 className="py-[25px] text-xl font-bold cursor-pointer block"

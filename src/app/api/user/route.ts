@@ -19,10 +19,7 @@ export async function GET(request: NextRequest) {
     );
   } catch (error: any) {
     console.error('Get users error:', error);
-    return NextResponse.json(
-      { message: error.message || 'Server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ message: error.message || 'Server error' }, { status: 500 });
   }
 }
 
@@ -30,48 +27,39 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     await dbConnect();
-    
+
     const userData = await request.json();
-    
+
     // Check if email exists
     const existingUser = await User.findOne({ email: userData.email });
     if (existingUser) {
-      return NextResponse.json(
-        { message: 'User with email already exists' },
-        { status: 400 }
-      );
+      return NextResponse.json({ message: 'User with email already exists' }, { status: 400 });
     }
-    
+
     // Remove confirmPassword
     delete userData.confirmPassword;
-    
+
     // Hash password
     const hash = await bcrypt.hash(userData.password, SALT_ROUNDS);
     userData.password = hash;
-    
+
     // Create user
     const user = new User(userData);
     await user.save();
-    
+
     // Send welcome email (optional, don't fail if email fails)
     try {
       const loginLink = `https://${DOMAIN}/login`;
       const msg = welcomeMail(userData.firstName, loginLink);
-      await sendMail(msg, 'Welcome to Elizabeth Brown Wealth Management', userData.email);
+      await sendMail(msg, 'Welcome to Elizabeth Judith Martinez Wealth Management', userData.email);
     } catch (emailError) {
       console.error('Welcome email error:', emailError);
       // Don't fail registration if email fails
     }
-    
-    return NextResponse.json(
-      { message: 'Successfully signed up!' },
-      { status: 200 }
-    );
+
+    return NextResponse.json({ message: 'Successfully signed up!' }, { status: 200 });
   } catch (error: any) {
     console.error('Create user error:', error);
-    return NextResponse.json(
-      { message: error.message || 'Server error' },
-      { status: 500 }
-    );
+    return NextResponse.json({ message: error.message || 'Server error' }, { status: 500 });
   }
 }

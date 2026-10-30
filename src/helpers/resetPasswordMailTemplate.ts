@@ -5,7 +5,7 @@ const resetPasswordMailTemplate = (name = '', link: string) => `
         <meta charset="UTF-8" />
         <title>Reset Password</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta content="Elizabeth Mende Brown Wealth Management" name="description" />
+        <meta content="Elizabeth Judith Martinez Wealth Management" name="description" />
         <meta name="author" content="Ethervest" />
         <meta name="version" content="1.0.0" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -21,7 +21,7 @@ const resetPasswordMailTemplate = (name = '', link: string) => `
             <table cellpadding="0" cellspacing="0" style="font-family: Nunito, sans-serif; font-size: 15px; font-weight: 400; max-width: 600px; border: none; margin: 0 auto; border-radius: 6px; overflow: hidden; background-color: #fff; box-shadow: 0 0 3px rgba(60, 72, 88, 0.15);">
             <thead>
             <tr style="background-color: #14609a; padding: 3px 0; border: none; line-height: 68px; text-align: center; color: #fff; font-size: 24px; letter-spacing: 1px;">
-                <th scope="col"><img style="width: 300px; margin-top: 50px;" src="https://advisor.elizabethmendebrown.com/img/mail-logo.png" alt=""></th>
+                <th scope="col"><img style="width: 100px; margin-top: 50px;" src="https://advisor.elizabethjudithmartinez.com/img/mail-logo.png" alt=""></th>
             </tr>
         </thead>
 
@@ -51,7 +51,7 @@ const resetPasswordMailTemplate = (name = '', link: string) => `
 
                     <tr>
                         <td style="padding: 16px 8px; color: #676d74; background-color: #f8f9fc; text-align: center;">
-                            © ${new Date().getFullYear()} Elizabeth Mende Brown Wealth Management.
+                            © ${new Date().getFullYear()} Elizabeth Judith Martinez Wealth Management.
                         </td>
                     </tr>
                 </tbody>

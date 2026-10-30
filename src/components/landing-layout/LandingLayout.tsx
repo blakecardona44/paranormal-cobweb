@@ -3,9 +3,8 @@
 import React, { ReactNode } from 'react';
 import Footer from 'src/components/landing-pages-main/Footer';
 import Navbar from 'src/components/landing-pages-main/Navbar';
-import RandomToast from 'src/components/RandomToast';
 import WhatsappFloatButton from 'src/components/WhatsappFloatButton';
-import TawkMessenger from 'src/components/TawkMessenger';
+import JivoChat from 'src/components/JivoChat';
 
 interface LandingLayoutProps {
   children: ReactNode;
@@ -17,9 +16,8 @@ const LandingLayout: React.FC<LandingLayoutProps> = ({ children }) => {
     <div className="relative bg-[#F2F2F2]">
       <Navbar />
       {children}
-      <RandomToast />
       <WhatsappFloatButton />
-      <TawkMessenger />
+      <JivoChat />
       <Footer />
     </div>
   );

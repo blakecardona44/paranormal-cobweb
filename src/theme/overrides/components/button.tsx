@@ -79,6 +79,14 @@ export default function Button(theme: Theme) {
       ...(ownerState.color === color && {
         // CONTAINED
         ...(containedVariant && {
+          // Outrank Tailwind Preflight's [type='button'] background reset.
+          [`&.${buttonClasses.contained}`]: {
+            color: theme.palette[color].contrastText,
+            backgroundColor: theme.palette[color].main,
+            '&:hover': {
+              backgroundColor: theme.palette[color].dark,
+            },
+          },
           boxShadow: theme.customShadows[color],
           '&:hover': {
             boxShadow: theme.customShadows[color],
@@ -97,6 +105,10 @@ export default function Button(theme: Theme) {
 
     const disabledState = {
       [`&.${buttonClasses.disabled}`]: {
+        ...(containedVariant && {
+          color: theme.palette.action.disabled,
+          backgroundColor: theme.palette.action.disabledBackground,
+        }),
         // SOFT
         ...(softVariant && {
           backgroundColor: theme.palette.action.disabledBackground,

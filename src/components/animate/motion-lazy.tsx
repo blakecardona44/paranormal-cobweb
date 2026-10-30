@@ -1,6 +1,5 @@
 'use client';
 
-import dynamic from 'next/dynamic';
 import { LazyMotion, m } from 'framer-motion';
 
 // ----------------------------------------------------------------------
@@ -20,4 +19,4 @@ function MotionLazy({ children }: Props) {
   );
 }
 
-export default dynamic(() => Promise.resolve(MotionLazy), { ssr: false });
+export default MotionLazy;

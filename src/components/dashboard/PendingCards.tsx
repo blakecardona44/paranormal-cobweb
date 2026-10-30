@@ -80,7 +80,7 @@ interface Investment {
   plan: Plan;
   capital: number;
   currency: string;
-  stock: StockData;
+  stock: string | StockData;
   type: string;
 }
 
@@ -104,6 +104,13 @@ interface PendingCardsProps {
 
 export default function PendingCards({ investment, user, coin }: PendingCardsProps) {
   const { _id, plan: { name }, capital, currency, stock, type } = investment;
+  const stockSymbol = typeof stock === 'string' ? stock : stock.symbol;
+  const stockInfo = (stocks as Record<string, { name: string; imgUrl: string }>)[stockSymbol];
+  const stockName =
+    (typeof stock === 'object' && (stock.displayName || stock.longName)) ||
+    stockInfo?.name || stockSymbol;
+  const investmentName = type.includes('stock') ? stockName : 'Real Estate';
+  const financialCurrency = typeof stock === 'object' ? stock.financialCurrency : undefined;
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [transactionId, setTransactionId] = useState('');
@@ -122,7 +129,7 @@ export default function PendingCards({ investment, user, coin }: PendingCardsPro
       .create({
         purchase_units: [
           {
-            description: `This sharedAsset ${stock.longName} of ${capital} capital`,
+            description: `This sharedAsset ${investmentName} of ${capital} capital`,
             amount: {
               currency_code: 'USD',
               value: capital,
@@ -260,7 +267,7 @@ export default function PendingCards({ investment, user, coin }: PendingCardsPro
                   <img
                     style={{ width: 30, height: 30 }}
                     className="rounded-full"
-                    src={(stocks as any)[stock.symbol]?.imgUrl}
+                    src={stockInfo?.imgUrl}
                     alt="stock icon"
                   />
                 </Box>
@@ -270,7 +277,7 @@ export default function PendingCards({ investment, user, coin }: PendingCardsPro
                   variant="subtitle2"
                   sx={{ color: 'text.secondary' }}
                 >
-                  {`${stock.displayName?.toUpperCase()}(${stock.financialCurrency})${capitalCase(name)} Plan`}
+                  {`${investmentName.toUpperCase()}${financialCurrency ? ` (${financialCurrency})` : ''} ${capitalCase(name)} Plan`}
                 </Typography>
               </Box>
               <Box sx={{ color: 'error.main', justifySelf: 'end' }}>
@@ -359,7 +366,7 @@ export default function PendingCards({ investment, user, coin }: PendingCardsPro
                 />
               </Box>
               <Typography paddingLeft={2} align={'center'} variant="subtitle2">
-                {`${type.includes('stock') ? stock.displayName : 'Real Estate'}`}
+                {investmentName}
                 {` ${capitalCase(name)} Plan`}
               </Typography>
             </Box>

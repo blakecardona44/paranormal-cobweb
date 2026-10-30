@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Reset Password',
-  description: 'Reset your Elizabeth Mende Brown account password.',
+  description: 'Reset your Elizabeth Judith Martinez account password.',
   robots: { index: false, follow: false },
 };
 

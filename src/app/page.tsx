@@ -3,7 +3,9 @@ import HomePageContent from './home-content';
 import { getBlogArticles } from '@/lib/articles';
 import { Metadata } from 'next';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') ||
+  'https://advisor.elizabethjudithmartinez.com';
 
 export const metadata: Metadata = {
   alternates: {

@@ -10,7 +10,7 @@ export async function POST() {
       'https://rest.coinapi.io/v1/assets?filter_asset_id=BTC,USDT,ETH,XRP,DOGE',
       {
         headers: {
-          'X-CoinAPI-Key': process.env.COINAPI_KEY || '5889e982-099b-4beb-8aab-92cb80183548',
+          'X-CoinAPI-Key': process.env.COINAPI_KEY,
         },
       }
     );

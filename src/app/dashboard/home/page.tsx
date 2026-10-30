@@ -16,10 +16,9 @@ import mongoose from 'mongoose';
 import dbConnect from '@/utils/dbConnect';
 import Withdrawal from '@/models/withdrawal.model';
 import Transaction from '@/models/transaction.model';
-import stocks from '@/helpers/stocks';
 import fs from 'fs/promises';
 import path from 'path';
-import axios from 'axios';
+import { getStockQuotes } from '@/lib/stock-quotes';
 // Client component
 import DashboardHomeClient from './DashboardHomeClient';
 
@@ -75,17 +74,9 @@ async function getDashboardData(userId: string) {
 
     // Fetch stocks data
     const filePath = path.join(process.cwd(), 'public', 'dashboardData.json');
-        const stocksListString = Object.keys(stocks).join(",");
-        console.log('Fetching stocks data for:', stocksListString);
     let stocksDataList = [];
     try {
-      const stocksResponse = await axios({
-        baseURL: process.env.NEXT_PUBLIC_IMAGE_SERVER,
-        method: 'GET',
-        url: '/yahooapi/quotes',
-      });
-
-      const stocksDataArray = stocksResponse.data.data;
+      const stocksDataArray = await getStockQuotes();
       const jsonFile = await fs.readFile(filePath, 'utf-8');
       const parsedData = JSON.parse(jsonFile);
       

@@ -4,16 +4,16 @@
     "name": "Bitcoin",
     "type_is_crypto": 1,
     "data_quote_start": "2014-02-24T00:00:00.0000000Z",
-    "data_quote_end": "2025-08-22T00:00:00.0000000Z",
+    "data_quote_end": "2026-10-30T14:00:00.0000000Z",
     "data_orderbook_start": "2014-03-17T00:00:00.0000000Z",
-    "data_orderbook_end": "2025-08-22T00:00:00.0000000Z",
+    "data_orderbook_end": "2026-10-30T14:00:00.0000000Z",
     "data_trade_start": "2011-09-13T00:00:00.0000000Z",
-    "data_trade_end": "2025-08-22T00:00:00.0000000Z",
-    "data_symbols_count": 13022,
-    "volume_1hrs_usd": 12021865951280.4,
-    "volume_1day_usd": 54401361225562.82,
-    "volume_1mth_usd": 27951186874132868,
-    "price_usd": 115778.123805501,
+    "data_trade_end": "2026-10-30T14:00:00.0000000Z",
+    "data_symbols_count": 15106,
+    "volume_1hrs_usd": 41364087586765.36,
+    "volume_1day_usd": 2152980295278412.2,
+    "volume_1mth_usd": 50563199100558660,
+    "price_usd": 76513.9870067229,
     "id_icon": "4caf2b16-a017-4e26-a348-2cea69c34cba",
     "chain_addresses": [
       {
@@ -27,24 +27,25 @@
         "address": "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599"
       }
     ],
+    "asset_type": "CRYPTO",
     "data_start": "2011-09-13",
-    "data_end": "2025-08-22"
+    "data_end": "2026-10-30"
   },
   "USDT": {
     "asset_id": "USDT",
     "name": "Tether",
     "type_is_crypto": 1,
     "data_quote_start": "2016-06-12T00:00:00.0000000Z",
-    "data_quote_end": "2025-08-22T00:00:00.0000000Z",
+    "data_quote_end": "2026-10-30T14:00:00.0000000Z",
     "data_orderbook_start": "2016-05-29T00:00:00.0000000Z",
-    "data_orderbook_end": "2025-08-22T00:00:00.0000000Z",
+    "data_orderbook_end": "2026-10-30T14:00:00.0000000Z",
     "data_trade_start": "2013-12-27T00:00:00.0000000Z",
-    "data_trade_end": "2025-08-22T00:00:00.0000000Z",
-    "data_symbols_count": 38152,
-    "volume_1hrs_usd": 499310496854.07,
-    "volume_1day_usd": 2227954019651.15,
-    "volume_1mth_usd": 14798636239051388,
-    "price_usd": 0.999459190546007,
+    "data_trade_end": "2026-10-30T14:00:00.0000000Z",
+    "data_symbols_count": 49588,
+    "volume_1hrs_usd": 12062575144897.09,
+    "volume_1day_usd": 1304485186256478.2,
+    "volume_1mth_usd": 31820421548206788,
+    "price_usd": 0.998505609040903,
     "id_icon": "5ed65416-963e-4e57-998a-3c302da8936e",
     "chain_addresses": [
       {
@@ -58,24 +59,25 @@
         "address": "0xdac17f958d2ee523a2206206994597c13d831ec7"
       }
     ],
+    "asset_type": "STABLECOIN",
     "data_start": "2013-12-27",
-    "data_end": "2025-08-22"
+    "data_end": "2026-10-30"
   },
   "ETH": {
     "asset_id": "ETH",
     "name": "Ethereum",
     "type_is_crypto": 1,
     "data_quote_start": "2015-08-10T00:00:00.0000000Z",
-    "data_quote_end": "2025-08-22T00:00:00.0000000Z",
+    "data_quote_end": "2026-10-30T14:00:00.0000000Z",
     "data_orderbook_start": "2016-03-15T00:00:00.0000000Z",
-    "data_orderbook_end": "2025-08-22T00:00:00.0000000Z",
+    "data_orderbook_end": "2026-10-30T14:00:00.0000000Z",
     "data_trade_start": "2016-03-09T00:00:00.0000000Z",
-    "data_trade_end": "2025-08-22T00:00:00.0000000Z",
-    "data_symbols_count": 11541,
-    "volume_1hrs_usd": 104866815548,
-    "volume_1day_usd": 746784225339.58,
-    "volume_1mth_usd": 526978159288990.8,
-    "price_usd": 4701.99567667946,
+    "data_trade_end": "2026-10-30T14:00:00.0000000Z",
+    "data_symbols_count": 11358,
+    "volume_1hrs_usd": 358350407870.3,
+    "volume_1day_usd": 144550957208836.38,
+    "volume_1mth_usd": 1299106512834564.5,
+    "price_usd": 2229.8323224492,
     "id_icon": "604ae453-3d9f-4ad0-9a48-9905cce617c2",
     "chain_addresses": [
       {
@@ -89,45 +91,48 @@
         "address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2"
       }
     ],
+    "asset_type": "CRYPTO",
     "data_start": "2015-08-10",
-    "data_end": "2025-08-22"
+    "data_end": "2026-10-30"
   },
   "DOGE": {
     "asset_id": "DOGE",
     "name": "DogeCoin",
     "type_is_crypto": 1,
     "data_quote_start": "2016-06-13T00:00:00.0000000Z",
-    "data_quote_end": "2025-08-22T00:00:00.0000000Z",
+    "data_quote_end": "2026-10-30T14:00:00.0000000Z",
     "data_orderbook_start": "2016-05-29T00:00:00.0000000Z",
-    "data_orderbook_end": "2025-08-22T00:00:00.0000000Z",
+    "data_orderbook_end": "2026-10-30T14:00:00.0000000Z",
     "data_trade_start": "2016-05-29T00:00:00.0000000Z",
-    "data_trade_end": "2025-08-22T00:00:00.0000000Z",
-    "data_symbols_count": 2924,
-    "volume_1hrs_usd": 32592203.02,
-    "volume_1day_usd": 463203417.87,
-    "volume_1mth_usd": 396172577998.43,
-    "price_usd": 0.230616807777005,
+    "data_trade_end": "2026-10-30T14:00:00.0000000Z",
+    "data_symbols_count": 3300,
+    "volume_1hrs_usd": 135178638.34,
+    "volume_1day_usd": 11325149825.93,
+    "volume_1mth_usd": 385688523162.14,
+    "price_usd": 0.0748106062504335,
     "id_icon": "63e240f3-047f-41c7-9179-6784bc719f63",
+    "asset_type": "CRYPTO",
     "data_start": "2016-05-29",
-    "data_end": "2025-08-22"
+    "data_end": "2026-10-30"
   },
   "XRP": {
     "asset_id": "XRP",
     "name": "Ripple",
     "type_is_crypto": 1,
     "data_quote_start": "2016-06-13T00:00:00.0000000Z",
-    "data_quote_end": "2025-08-22T00:00:00.0000000Z",
+    "data_quote_end": "2026-10-30T14:00:00.0000000Z",
     "data_orderbook_start": "2016-05-29T00:00:00.0000000Z",
-    "data_orderbook_end": "2025-08-22T00:00:00.0000000Z",
+    "data_orderbook_end": "2026-10-30T14:00:00.0000000Z",
     "data_trade_start": "2016-05-29T00:00:00.0000000Z",
-    "data_trade_end": "2025-08-22T00:00:00.0000000Z",
-    "data_symbols_count": 2091,
-    "volume_1hrs_usd": 65119577.24,
-    "volume_1day_usd": 1434316670.41,
-    "volume_1mth_usd": 756228429812.47,
-    "price_usd": 2.99792351662614,
+    "data_trade_end": "2026-10-30T14:00:00.0000000Z",
+    "data_symbols_count": 2597,
+    "volume_1hrs_usd": 68137241.37,
+    "volume_1day_usd": 5945258790.28,
+    "volume_1mth_usd": 138329911755.22,
+    "price_usd": 1.24194223855233,
     "id_icon": "ba90bcb0-cafb-4801-ac5d-d310f47d6411",
+    "asset_type": "CRYPTO",
     "data_start": "2016-05-29",
-    "data_end": "2025-08-22"
+    "data_end": "2026-10-30"
   }
 }

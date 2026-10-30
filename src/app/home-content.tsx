@@ -1,8 +1,6 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
-import { useRouter } from '@bprogress/next';
-import { useSearchParams } from 'next/navigation';
 import axios from 'axios';
 
 // Components
@@ -12,7 +10,7 @@ import LandingLayout from 'src/components/landing-layout/LandingLayout';
 import AboutSection from 'src/components/landing-pages-main/AboutSection';
 import Services, { PortfolioCTA } from 'src/components/landing-pages-main/Services';
 import BlogList1 from 'src/components/landing-pages-main/BlogList1';
-import MorganBlogs from 'src/components/landing-pages-main/MorganBlogs';
+import InsightsBlogs from 'src/components/landing-pages-main/InsightsBlogs';
 import CTAsection from 'src/components/landing-pages-main/CTAsection';
 import FAQs from 'src/components/landing-pages-main/FAQs';
 import Script from 'next/script';
@@ -35,12 +33,10 @@ interface HomePageContentProps {
 
 const HomePageContent: React.FC<HomePageContentProps> = ({ initialArticles }) => {
   const mounted = useRef(true);
-  const router = useRouter();
-  const searchParams = useSearchParams();
   const [articles] = React.useState(initialArticles);
 
   useEffect(() => {
-    const ref = searchParams?.get('ref');
+    const ref = new URLSearchParams(window.location.search).get('ref');
 
     if (mounted.current && ref) {
       axios
@@ -54,7 +50,7 @@ const HomePageContent: React.FC<HomePageContentProps> = ({ initialArticles }) =>
         });
     }
     mounted.current = false;
-  }, [searchParams]);
+  }, []);
 
   return (
     <>
@@ -63,7 +59,7 @@ const HomePageContent: React.FC<HomePageContentProps> = ({ initialArticles }) =>
       <Services />
       <PortfolioCTA />
       <BlogList1 list={articles} />
-      <MorganBlogs />
+      <InsightsBlogs />
       <CTAsection />
       <FAQs />
       <Testimonials />

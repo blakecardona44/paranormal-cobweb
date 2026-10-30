@@ -7,24 +7,29 @@ import { getArticle, getArticleSlugs } from '@/lib/articles';
 
 // ----------------------------------------------------------------------
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://advisor.elizabethmendebrown.com';
-const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME || 'Elizabeth Mende Brown';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://advisor.elizabethjudithmartinez.com';
+const SITE_NAME = process.env.NEXT_PUBLIC_SITE_NAME || 'Elizabeth Judith Martinez';
 
-export async function generateMetadata(
-  { params }: { params: { slug: string } }
-): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
   const article = await getArticle(params.slug);
 
   if (!article) {
     return { title: 'Article Not Found' };
   }
 
-  const plainExcerpt = article.excerpt.replace(/<[^>]*>/g, '').substring(0, 160).trim();
+  const plainExcerpt = article.excerpt
+    .replace(/<[^>]*>/g, '')
+    .substring(0, 160)
+    .trim();
   const canonicalUrl = `${SITE_URL}/articles/${article.slug}`;
   const publishedDate = new Date(article.date).toISOString();
 
   return {
-    title: `${article.title} | ${SITE_NAME}`,
+    title: { absolute: `${article.title} | ${SITE_NAME}` },
     description: plainExcerpt,
     alternates: {
       canonical: canonicalUrl,

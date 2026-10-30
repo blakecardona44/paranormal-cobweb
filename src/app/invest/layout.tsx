@@ -3,22 +3,22 @@
 // export const metadata: Metadata = {
 //   title: 'Investment Plans',
 //   description:
-//     'Explore investment plans with Elizabeth Mende Brown. Choose from fixed-return plans, crypto, real estate, and stock market opportunities designed to grow your wealth.',
+//     'Explore investment plans with Elizabeth Judith Martinez. Choose from fixed-return plans, crypto, real estate, and stock market opportunities designed to grow your wealth.',
 //   keywords: [
 //     'investment plans',
 //     'fixed returns',
 //     'wealth management',
 //     'portfolio diversification',
 //     'passive income',
-//     'Elizabeth Mende Brown',
+//     'Elizabeth Judith Martinez',
 //   ],
 //   openGraph: {
-//     title: 'Investment Plans | Elizabeth Mende Brown',
+//     title: 'Investment Plans | Elizabeth Judith Martinez',
 //     description:
 //       'Explore fixed-return plans, crypto, real estate, and stock market opportunities designed to grow your wealth.',
-//     url: 'https://advisor.elizabethmendebrown.com/invest',
+//     url: 'https://advisor.elizabethjudithmartinez.com/invest',
 //   },
-//   alternates: { canonical: 'https://advisor.elizabethmendebrown.com/invest' },
+//   alternates: { canonical: 'https://advisor.elizabethjudithmartinez.com/invest' },
 // };
 
 export default function InvestLayout({ children }: { children: React.ReactNode }) {

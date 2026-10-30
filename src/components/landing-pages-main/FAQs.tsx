@@ -13,7 +13,7 @@ const faqs: FAQ[] = [
   {
     question: 'Why Investing?',
     answer:
-      "The earlier you start investing, the longer your money will be able to work in your favor! Get started investing as soon as you start earning your first penny!, One of the main benefits of investing is that the money you invest has the potential to grow substantially over time. Rather than just putting your money into a savings account to save for the future, investing is can be a much smarter way to make your money work for you.",
+      'The earlier you start investing, the longer your money will be able to work in your favor! Get started investing as soon as you start earning your first penny!, One of the main benefits of investing is that the money you invest has the potential to grow substantially over time. Rather than just putting your money into a savings account to save for the future, investing is can be a much smarter way to make your money work for you.',
   },
   {
     question: 'Is it better to save or invest?',
@@ -34,16 +34,14 @@ const faqs: FAQ[] = [
       `,
   },
   {
-    question:
-      'What elements are evaluated when strategically allocating assets in portfolios?',
+    question: 'What elements are evaluated when strategically allocating assets in portfolios?',
     answer:
-      "When managing portfolios, we consider various asset classes such as stocks, bonds, real estate, and alternative investments. Each asset class is evaluated based on its risk-return profile, correlation with other assets, and its role in achieving diversification. We aim to construct portfolios that balance risk and return by allocating assets strategically according to your investment objectives and risk tolerance, our approach involves monitoring and adjusting the allocation of assets over time to adapt to changes in market conditions and economic outlooks.",
+      'When managing portfolios, we consider various asset classes such as stocks, bonds, real estate, and alternative investments. Each asset class is evaluated based on its risk-return profile, correlation with other assets, and its role in achieving diversification. We aim to construct portfolios that balance risk and return by allocating assets strategically according to your investment objectives and risk tolerance, our approach involves monitoring and adjusting the allocation of assets over time to adapt to changes in market conditions and economic outlooks.',
   },
   {
-    question:
-      'Why should you trust Us, and what makes us stand out from the rest?',
+    question: 'Why should you trust Us, and what makes us stand out from the rest?',
     answer:
-      "At Elizabeth Mende Brown Wealth Management, we're dedicated to providing accessible and user-friendly investment solutions. With a team of experienced professionals, we aim to empower individuals to achieve their financial goals through innovative and transparent investment opportunities. Our platform offers a diverse range of assets and personalized services tailored to your needs, ensuring a seamless and rewarding investment experience.",
+      "At Elizabeth Judith Martinez Financial Services, we're dedicated to providing accessible and user-friendly investment solutions. Led by a Financial Services Representative with PFS Investments Inc., a Primerica-affiliated firm, with financial services experience since 2006, we aim to empower individuals and families to achieve their financial goals through disciplined and transparent investment guidance. Our practice offers a diverse range of investment products and personalized services tailored to your needs, ensuring a seamless and rewarding investment experience.",
   },
 ];
 
@@ -66,9 +64,7 @@ const FAQs: React.FC = () => {
                   <>
                     <dt className="text-lg">
                       <Disclosure.Button className="text-left w-full flex justify-between items-start text-gray-400">
-                        <span className="font-semibold text-gray-900">
-                          {faq.question}
-                        </span>
+                        <span className="font-semibold text-gray-900">{faq.question}</span>
                         <span className="ml-6 h-7 flex items-center">
                           <ChevronDownIcon
                             className={classNames(

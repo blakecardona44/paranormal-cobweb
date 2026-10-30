@@ -1,8 +1,8 @@
 {
-  "name": "elizabeth-brown",
-  "author": "Elizabeth Brown",
+  "name": "elizabeth-judith-martinez",
+  "author": "Elizabeth Judith Martinez",
   "version": "1.0.0",
-  "description": "Elizabeth Brown Wealth Management Platform",
+  "description": "Elizabeth Judith Martinez Wealth Management Platform",
   "private": true,
   "scripts": {
     "dev": "next dev -p 8084",

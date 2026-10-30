@@ -90,26 +90,21 @@ const BlogTemplate: React.FC<BlogTemplateProps> = ({ article, index }) => (
         </ul>
         <div className="mb-9">
           <Link
-            href={`/articles/${article.slug}`}
+            href={`/articles/${article.slug}/`}
             className="py-[16px] px-[52px] cursor-pointer rounded-full text-[19px] text-[#666666] border-2 border-[#666666] font-bold hover:bg-[#666666] hover:text-white"
           >
             Learn More
           </Link>
         </div>
       </div>
-      <div className="relative md:w-[62%] bg-[#fff] flex flex-col md:flex-row">
+      <div className="relative md:w-[62%] bg-white flex flex-col md:flex-row">
         <Link
-          href={`/articles/${article.slug}`}
+          href={`/articles/${article.slug}/`}
           className="absolute transition-all duration-500 top-0 left-0 right-0 bottom-0 bg-[#4c4c4c] opacity-0 hover:opacity-20"
         />
         <div className="md:w-1/2 p-[30px] order-2 md:order-1 text-black">
-          <h3 className="text-[24px] font-bold mb-[30px]">
-            {article.title.toUpperCase()}
-          </h3>
-          <div
-            className="text-base"
-            dangerouslySetInnerHTML={{ __html: article.excerpt }}
-          />
+          <h3 className="text-[24px] font-bold mb-[30px]">{article.title.toUpperCase()}</h3>
+          <div className="text-base" dangerouslySetInnerHTML={{ __html: article.excerpt }} />
         </div>
         <div className="relative pt-[130%] order-1 md:order-2 md:pt-0 md:w-1/2">
           <Image

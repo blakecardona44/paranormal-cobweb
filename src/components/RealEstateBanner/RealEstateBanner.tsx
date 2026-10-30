@@ -1,41 +1,41 @@
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination, EffectFade } from "swiper";
-import Banner from "./banner";
+import React from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, Pagination, EffectFade } from 'swiper';
+import Banner from './banner';
 
 const reels = [
   {
-    imgUrl: "/img/real/banner/1.png",
+    imgUrl: '/img/real/banner/1.png',
     title:
-      "Achieve Your Financial Goals with Elizabeth Brown's Wealth Management Services",
+      "Achieve Your Financial Goals with Elizabeth Judith Martinez's Wealth Management Services",
     paragraph:
-      "Elizabeth Brown offers a wide range of carefully tailored wealth management services that allow you to diversify and maximize your returns. With her expertise, investing in your financial future has never been easier.",
+      'Elizabeth Judith Martinez offers a wide range of carefully tailored wealth management services that allow you to diversify and maximize your returns. With her expertise, investing in your financial future has never been easier.',
   },
   {
-    imgUrl: "/img/real/banner/2.png",
-    title:
-      "Unlock Your Wealth with Elizabeth Brown's Wealth Management Strategies",
+    imgUrl: '/img/real/banner/2.png',
+    title: "Unlock Your Wealth with Elizabeth Judith Martinez's Wealth Management Strategies",
     paragraph:
-      "Wealth management is a proven way to build long-term financial security and achieve your goals. Elizabeth Brown offers access to personalized investment strategies and a comprehensive range of services to help you unlock your wealth potential.",
+      'Wealth management is a proven way to build long-term financial security and achieve your goals. Elizabeth Judith Martinez offers access to personalized investment strategies and a comprehensive range of services to help you unlock your wealth potential.',
   },
   {
-    title:
-      "Unlock Your Wealth with Elizabeth Brown's Expert Wealth Management Services",
+    title: "Unlock Your Wealth with Elizabeth Judith Martinez's Expert Wealth Management Services",
     paragraph:
-      "Experience high returns and hassle-free financial planning with Elizabeth Brown's diverse range of wealth management solutions. Join now and take control of your financial future!",
+      "Experience high returns and hassle-free financial planning with Elizabeth Judith Martinez's diverse range of wealth management solutions. Join now and take control of your financial future!",
 
-    imgUrl: "/img/real/banner/3.png",
+    imgUrl: '/img/real/banner/3.png',
   },
 ];
 const RealEstateBanner = () => {
   return (
     <div className=" w-full h-full">
       <Swiper
-        style={{
-          "--swiper-pagination-color": "#fff",
-        } as React.CSSProperties}
+        style={
+          {
+            '--swiper-pagination-color': '#fff',
+          } as React.CSSProperties
+        }
         spaceBetween={30}
-        effect={"fade"}
+        effect={'fade'}
         // fadeEffect= {{
         //   crossFade: true,
         // }}

@@ -10,4 +10,6 @@ jobs:
     steps:
       - name: Call our weekly API route
         run: |
-          curl 'https://advisor.elizabethmendebrown.com/api/update-coin-prices'
+          curl --fail-with-body --silent --show-error --max-time 120 \
+            --request POST \
+            'https://advisor.elizabethjudithmartinez.com/api/update-coin-prices'

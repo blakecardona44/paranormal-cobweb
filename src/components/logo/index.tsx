@@ -31,12 +31,10 @@ const Logo = forwardRef<HTMLDivElement, LogoProps>(
         >
           <img
             style={
-              size === 'large'
-                ? { width: '100%', height: '100%' }
-                : { width: '70%', height: '70%' }
+              size === 'large' ? { width: '100%', height: '100%' } : { width: '70%', height: '70%' }
             }
             src="/logo/logo.svg"
-            alt="logo img"
+            alt="Elizabeth Judith Martinez"
           />
         </Box>
       ) : (
@@ -51,7 +49,7 @@ const Logo = forwardRef<HTMLDivElement, LogoProps>(
           <img
             style={size === 'large' ? { width: '100%' } : { width: '70%' }}
             src="/logo/logo.svg"
-            alt="logo img"
+            alt="Elizabeth Judith Martinez"
           />
         </Box>
       );

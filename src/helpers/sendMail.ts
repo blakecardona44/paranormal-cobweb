@@ -40,7 +40,7 @@ const sendMail = async (
 
   try {
     const mail = {
-      from: `"Elizabeth Mende Brown" <${MAIL_FROM}>`,
+      from: `"Elizabeth Judith Martinez" <${MAIL_FROM}>`,
       to: receiver,
       subject: subject,
       html: html,

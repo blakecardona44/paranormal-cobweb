@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 
 // Force dynamic rendering since this page uses cookies/session
 export const dynamic = 'force-dynamic';
-import axios from 'axios';
+import { getStockQuotes } from '@/lib/stock-quotes';
 import fs from 'fs/promises';
 import path from 'path';
 // Client component
@@ -29,12 +29,7 @@ export default async function PortfolioPage() {
 
   let stockDataQuote: any[] = [];
   try {
-    const stocksResponse = await axios({
-      baseURL: process.env.NEXT_PUBLIC_IMAGE_SERVER,
-      method: 'GET',
-      url: '/yahooapi/quotes',
-    });
-    const stocksDataList = stocksResponse.data.data;
+    const stocksDataList = await getStockQuotes();
     const filePath = path.join(process.cwd(), 'public', 'dashboardData.json');
     const jsonFile = await fs.readFile(filePath, 'utf-8');
     const parsedData = JSON.parse(jsonFile);

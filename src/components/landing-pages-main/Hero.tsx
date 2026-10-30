@@ -24,28 +24,23 @@ const Hero: React.FC = () => {
       <div className="absolute inset-0 bg-black opacity-80" />
       <div className="container relative text-white">
         <h1 className="font-inter font-extralight text-5xl mb-4 md:mb-0 md:text-[72px] md:tracking-[-3px] text-center">
-          Elizabeth Mende Brown, CIMA®
+          Elizabeth Judith Martinez
         </h1>
         <h2 className="font-inter text-base md:text-[25px] md:tracking-[-2.5px] leading-normal text-center">
-          Senior Vice President, Wealth Management, Financial Advisor, Family
-          Wealth Advisor, International Client Advisor
+          Financial Services Representative at PFS Investments Inc. | Primerica
         </h2>
         <div className="flex justify-center gap-[15px] mt-8">
-          <a
-            target="_blank"
-            rel="noreferrer"
-            href="mailto:elizabethmendebrown@gmail.com"
-          >
+          <a target="_blank" rel="noreferrer" href="mailto:elizabethjudithmartinez@gmail.com">
             <IoIosMail className="h-[32px] w-[32px]" />
           </a>
         </div>
         <p className="text-lg mt-[16px] text-center">
           <span className="font-bold">Direct:&nbsp;&nbsp;</span>
-          (+1(424)279-3916)
+          (+1(949)297-6131)
         </p>
         <div className="flex justify-center mt-[30px]">
           <a
-            href="https://wa.me/+14242793916"
+            href="https://wa.me/+19492976131"
             target="_blank"
             rel="noreferrer"
             className="py-4 px-[48px] bg-[#3182c1] text-[19px] rounded-full"
