@@ -20,9 +20,10 @@ jobs:
     permissions:
       contents: read
       id-token: write
+      packages: write
     env:
-      REGISTRY: martinezregistry1031.azurecr.io
-      IMAGE_NAME: martinez-web
+      REGISTRY: ghcr.io
+      IMAGE_NAME: blakecardona44/martinez-web
       RESOURCE_GROUP: martinez-app
       CONTAINER_APP: martinez-web
       NEXT_PUBLIC_SITE_URL: https://advisor.elizabethjudithmartinez.com
@@ -41,8 +42,10 @@ jobs:
           tenant-id: ${{ vars.AZURE_TENANT_ID }}
           subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
 
-      - name: Sign in to Azure Container Registry
-        run: az acr login --name martinezregistry1031
+      - name: Sign in to GitHub Container Registry
+        env:
+          GHCR_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: echo "$GHCR_TOKEN" | docker login ghcr.io --username "${{ github.actor }}" --password-stdin
 
       - name: Build and push image
         shell: bash
@@ -55,8 +58,15 @@ jobs:
             --build-arg NEXT_PUBLIC_ASSETS_API \
             --build-arg NEXT_PUBLIC_MAPBOX_TOKEN \
             --build-arg NEXT_PUBLIC_MAPBOX_API \
+            --label org.opencontainers.image.source=https://github.com/blakecardona44/paranormal-cobweb \
             --tag "$REGISTRY/$IMAGE_NAME:$GITHUB_SHA" .
           docker push "$REGISTRY/$IMAGE_NAME:$GITHUB_SHA"
+
+      - name: Verify Azure can pull the public image
+        shell: bash
+        run: |
+          set -euo pipefail
+          DOCKER_CONFIG="$(mktemp -d)" docker manifest inspect "$REGISTRY/$IMAGE_NAME:$GITHUB_SHA" > /dev/null
 
       - name: Deploy image to Container App
         shell: bash
