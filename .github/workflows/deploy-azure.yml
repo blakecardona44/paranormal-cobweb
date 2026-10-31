@@ -1,0 +1,71 @@
+name: Deploy to Azure Container Apps
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: martinez-web-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      REGISTRY: martinezregistry1031.azurecr.io
+      IMAGE_NAME: martinez-web
+      RESOURCE_GROUP: martinez-app
+      CONTAINER_APP: martinez-web
+      NEXT_PUBLIC_SITE_URL: https://advisor.elizabethjudithmartinez.com
+      NEXT_PUBLIC_IMAGE_SERVER: https://server1.elizabethimg001store.online
+      NEXT_PUBLIC_HOST_API: ${{ vars.NEXT_PUBLIC_HOST_API }}
+      NEXT_PUBLIC_ASSETS_API: ${{ vars.NEXT_PUBLIC_ASSETS_API }}
+      NEXT_PUBLIC_MAPBOX_TOKEN: ${{ vars.NEXT_PUBLIC_MAPBOX_TOKEN }}
+      NEXT_PUBLIC_MAPBOX_API: ${{ vars.NEXT_PUBLIC_MAPBOX_API }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Sign in to Azure using OIDC
+        uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Sign in to Azure Container Registry
+        run: az acr login --name martinezregistry1031
+
+      - name: Build and push image
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker build --platform linux/amd64 \
+            --build-arg NEXT_PUBLIC_SITE_URL \
+            --build-arg NEXT_PUBLIC_IMAGE_SERVER \
+            --build-arg NEXT_PUBLIC_HOST_API \
+            --build-arg NEXT_PUBLIC_ASSETS_API \
+            --build-arg NEXT_PUBLIC_MAPBOX_TOKEN \
+            --build-arg NEXT_PUBLIC_MAPBOX_API \
+            --tag "$REGISTRY/$IMAGE_NAME:$GITHUB_SHA" .
+          docker push "$REGISTRY/$IMAGE_NAME:$GITHUB_SHA"
+
+      - name: Deploy image to Container App
+        shell: bash
+        run: |
+          set -euo pipefail
+          az extension add --name containerapp --upgrade --only-show-errors
+          az containerapp update \
+            --name "$CONTAINER_APP" \
+            --resource-group "$RESOURCE_GROUP" \
+            --image "$REGISTRY/$IMAGE_NAME:$GITHUB_SHA" \
+            --output none
+          echo "Deployed $GITHUB_SHA to $CONTAINER_APP" >> "$GITHUB_STEP_SUMMARY"
