@@ -12,8 +12,7 @@ export const metadata: Metadata = {
 
 // Force dynamic rendering since this page uses cookies/session
 export const dynamic = 'force-dynamic';
-import fs from 'fs/promises';
-import path from 'path';
+import { getCoinPrices } from '@/lib/coin-prices';
 // Client component
 import RealestateClient from './RealestateClient';
 
@@ -26,12 +25,7 @@ export default async function RealEstatePage() {
     redirect('/login');
   }
 
-  // Read coin prices from public/coinData.json (mirrors original getCoinPrices())
-  const filePath = path.join(process.cwd(), 'public', 'coinData.json');
-  let coinList = null;
-  try {
-    coinList = JSON.parse(await fs.readFile(filePath, 'utf-8'));
-  } catch {}
+  const coinList = await getCoinPrices();
 
   // Serialize to plain objects before passing to Client Component
   const plainUser = JSON.parse(JSON.stringify(user));

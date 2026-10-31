@@ -15,8 +15,7 @@ export const dynamic = 'force-dynamic';
 import dbConnect from '@/utils/dbConnect';
 import Investment from '@/models/investment.model';
 import plans from '@/helpers/plans';
-import fs from 'fs/promises';
-import path from 'path';
+import { getCoinPrices } from '@/lib/coin-prices';
 // Client component
 import InvestPendClient from './InvestPendClient';
 
@@ -42,15 +41,7 @@ export default async function PendingInvestmentsPage() {
     plan: plans[(x as any).planId],
   }));
 
-  let coinList: any = null;
-  try {
-    const filePath = path.join(process.cwd(), 'public', 'coinData.json');
-    const fileContent = await fs.readFile(filePath, 'utf-8');
-    coinList = JSON.parse(fileContent);
-  } catch (err) {
-    console.error('Error reading coinData.json:', err);
-    coinList = null;
-  }
+  const coinList = await getCoinPrices();
 
   const plainUser = JSON.parse(JSON.stringify(user));
   const plainPendingInvestments = JSON.parse(JSON.stringify(pendingInvestments));

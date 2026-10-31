@@ -1,6 +1,6 @@
 'use client';
 
-import { Container, Typography, Grid } from '@mui/material';
+import { Container, Typography, Grid, Alert } from '@mui/material';
 import { useState } from 'react';
 // hooks
 import useSettings from '@/hooks/useSettings';
@@ -39,11 +39,17 @@ export default function InvestPendClient({
           {!!investments.length &&
             investments.map((x) => (
               <Grid key={x._id} item xs={12} sm={6} md={4}>
-                <PendingCards
-                  investment={x}
-                  user={user}
-                  coin={coinList![x.currency.toUpperCase()]}
-                />
+                {x.currency === 'paypal' || coinList?.[x.currency.toUpperCase()] ? (
+                  <PendingCards
+                    investment={x}
+                    user={user}
+                    coin={coinList?.[x.currency.toUpperCase()]}
+                  />
+                ) : (
+                  <Alert severity="warning">
+                    Payment pricing is temporarily unavailable. Please try again later.
+                  </Alert>
+                )}
               </Grid>
             ))}
         </Grid>

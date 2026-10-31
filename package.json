@@ -68,6 +68,7 @@
     "react-toastify": "^9.1.1",
     "react-ts-tradingview-widgets": "^1.0.14",
     "sass": "^1.98.0",
+    "sharp": "^0.34.5",
     "simplebar-react": "^3.2.4",
     "stylis": "^4.2.0",
     "stylis-plugin-rtl": "^2.1.1",

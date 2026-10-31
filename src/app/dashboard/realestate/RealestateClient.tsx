@@ -1,6 +1,7 @@
 'use client';
 
 import {
+  Alert,
   Container,
   Typography,
   Grid,
@@ -48,7 +49,14 @@ export default function RealestateClient({ user, coinList }: RealestateClientPro
     setCoin(e.target.value);
   };
 
-  if (!coinList) return null;
+  if (!coinList)
+    return (
+      <Container maxWidth={themeStretch ? false : 'xl'}>
+        <Alert severity="warning">
+          Investment pricing is temporarily unavailable. Please try again later.
+        </Alert>
+      </Container>
+    );
 
   return (
     <Page title="All Plans">

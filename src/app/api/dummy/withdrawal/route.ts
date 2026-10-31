@@ -5,6 +5,9 @@ import Dummy from '@/models/dummy.model';
 import { add } from 'date-fns';
 import axios from 'axios';
 
+// This database-writing endpoint must execute only when explicitly requested.
+export const dynamic = 'force-dynamic';
+
 function randomIntFromInterval(min: number, max: number): number {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
