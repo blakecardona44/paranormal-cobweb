@@ -4,6 +4,11 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      reuse_dashboard_image:
+        description: Use the already-built dashboard image af6419d
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -24,6 +29,7 @@ jobs:
     env:
       REGISTRY: ghcr.io
       IMAGE_NAME: blakecardona44/martinez-web
+      IMAGE_TAG: ${{ inputs.reuse_dashboard_image && 'af6419dcdd4c3ee584c0653f4c8ad6b6e1d2324c' || github.sha }}
       RESOURCE_GROUP: martinez-app
       CONTAINER_APP: martinez-web
       NEXT_PUBLIC_SITE_URL: https://dashboard.elizabethjudithmartinez.com
@@ -48,6 +54,7 @@ jobs:
         run: echo "$GHCR_TOKEN" | docker login ghcr.io --username "${{ github.actor }}" --password-stdin
 
       - name: Build and push image
+        if: ${{ !inputs.reuse_dashboard_image }}
         shell: bash
         run: |
           set -euo pipefail
@@ -59,31 +66,36 @@ jobs:
             --build-arg NEXT_PUBLIC_MAPBOX_TOKEN \
             --build-arg NEXT_PUBLIC_MAPBOX_API \
             --label org.opencontainers.image.source=https://github.com/blakecardona44/paranormal-cobweb \
-            --tag "$REGISTRY/$IMAGE_NAME:$GITHUB_SHA" .
-          docker push "$REGISTRY/$IMAGE_NAME:$GITHUB_SHA"
+            --tag "$REGISTRY/$IMAGE_NAME:$IMAGE_TAG" .
+          docker push "$REGISTRY/$IMAGE_NAME:$IMAGE_TAG"
 
       - name: Verify Azure can pull the public image
         shell: bash
         run: |
           set -euo pipefail
-          DOCKER_CONFIG="$(mktemp -d)" docker manifest inspect "$REGISTRY/$IMAGE_NAME:$GITHUB_SHA" > /dev/null
+          DOCKER_CONFIG="$(mktemp -d)" docker manifest inspect "$REGISTRY/$IMAGE_NAME:$IMAGE_TAG" > /dev/null
 
       - name: Deploy image to Container App
         shell: bash
         run: |
           set -euo pipefail
           az extension add --name containerapp --upgrade --only-show-errors
-          if [ "$(az containerapp registry list --name "$CONTAINER_APP" --resource-group "$RESOURCE_GROUP" --query "[?server=='martinezregistry1031.azurecr.io'] | length(@)" --output tsv)" != "0" ]; then
-            az containerapp registry remove \
-              --name "$CONTAINER_APP" \
-              --resource-group "$RESOURCE_GROUP" \
-              --server martinezregistry1031.azurecr.io \
-              --output none
-          fi
+          az rest --method patch \
+            --url "https://management.azure.com/subscriptions/${{ vars.AZURE_SUBSCRIPTION_ID }}/resourceGroups/$RESOURCE_GROUP/providers/Microsoft.App/containerApps/$CONTAINER_APP?api-version=2025-07-01" \
+            --body '{"properties":{"configuration":{"registries":[]}}}' \
+            --output none
+          for attempt in $(seq 1 30); do
+            state=$(az containerapp show --name "$CONTAINER_APP" --resource-group "$RESOURCE_GROUP" --query properties.provisioningState --output tsv)
+            if [ "$state" = "Succeeded" ]; then break; fi
+            if [ "$state" = "Failed" ]; then echo "Registry cleanup provisioning failed"; exit 1; fi
+            sleep 10
+          done
+          test "$state" = "Succeeded"
           az containerapp update \
             --name "$CONTAINER_APP" \
             --resource-group "$RESOURCE_GROUP" \
-            --image "$REGISTRY/$IMAGE_NAME:$GITHUB_SHA" \
+            --image "$REGISTRY/$IMAGE_NAME:$IMAGE_TAG" \
             --set-env-vars DOMAIN=dashboard.elizabethjudithmartinez.com NEXT_PUBLIC_SITE_URL=https://dashboard.elizabethjudithmartinez.com \
             --output none
-          echo "Deployed $GITHUB_SHA to $CONTAINER_APP" >> "$GITHUB_STEP_SUMMARY"
+          az containerapp start --name "$CONTAINER_APP" --resource-group "$RESOURCE_GROUP" --output none
+          echo "Deployed $IMAGE_TAG to $CONTAINER_APP" >> "$GITHUB_STEP_SUMMARY"
