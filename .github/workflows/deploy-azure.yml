@@ -26,7 +26,7 @@ jobs:
       IMAGE_NAME: blakecardona44/martinez-web
       RESOURCE_GROUP: martinez-app
       CONTAINER_APP: martinez-web
-      NEXT_PUBLIC_SITE_URL: https://advisor.elizabethjudithmartinez.com
+      NEXT_PUBLIC_SITE_URL: https://dashboard.elizabethjudithmartinez.com
       NEXT_PUBLIC_IMAGE_SERVER: https://server1.elizabethimg001store.online
       NEXT_PUBLIC_HOST_API: ${{ vars.NEXT_PUBLIC_HOST_API }}
       NEXT_PUBLIC_ASSETS_API: ${{ vars.NEXT_PUBLIC_ASSETS_API }}

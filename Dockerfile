@@ -9,7 +9,7 @@ WORKDIR /app
 COPY . .
 
 # Only public configuration belongs in build arguments. Supply credentials at runtime.
-ARG NEXT_PUBLIC_SITE_URL=https://advisor.elizabethjudithmartinez.com
+ARG NEXT_PUBLIC_SITE_URL=https://dashboard.elizabethjudithmartinez.com
 ARG NEXT_PUBLIC_IMAGE_SERVER
 ARG NEXT_PUBLIC_HOST_API
 ARG NEXT_PUBLIC_ASSETS_API
@@ -21,8 +21,7 @@ ENV NEXT_TELEMETRY_DISABLED=1 \
     NEXT_PUBLIC_HOST_API=$NEXT_PUBLIC_HOST_API \
     NEXT_PUBLIC_ASSETS_API=$NEXT_PUBLIC_ASSETS_API \
     NEXT_PUBLIC_MAPBOX_TOKEN=$NEXT_PUBLIC_MAPBOX_TOKEN \
-    NEXT_PUBLIC_MAPBOX_API=$NEXT_PUBLIC_MAPBOX_API \
-    USE_LOCAL_ARTICLES=true
+    NEXT_PUBLIC_MAPBOX_API=$NEXT_PUBLIC_MAPBOX_API
 RUN npm run build
 
 FROM node:22-bookworm-slim AS runner

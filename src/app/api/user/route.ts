@@ -6,7 +6,12 @@ import sendMail from '@/helpers/sendMail';
 import welcomeMail from '@/helpers/welcomeMail';
 
 const SALT_ROUNDS = Number(process.env.BCRYPT_SALT_ROUNDS) || 10;
-const DOMAIN = process.env.NEXT_PUBLIC_SITE_URL || 'localhost:8084';
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || 'https://dashboard.elizabethjudithmartinez.com';
+const APP_URL = (/^https?:\/\//.test(SITE_URL) ? SITE_URL : `https://${SITE_URL}`).replace(
+  /\/+$/,
+  ''
+);
 
 // GET - Get all users
 export async function GET(request: NextRequest) {
@@ -49,7 +54,7 @@ export async function POST(request: NextRequest) {
 
     // Send welcome email (optional, don't fail if email fails)
     try {
-      const loginLink = `https://${DOMAIN}/login`;
+      const loginLink = `${APP_URL}/login`;
       const msg = welcomeMail(userData.firstName, loginLink);
       await sendMail(msg, 'Welcome to Elizabeth Judith Martinez Wealth Management', userData.email);
     } catch (emailError) {

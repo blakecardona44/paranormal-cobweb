@@ -14,14 +14,14 @@ local environment files and credentials. Never pass database passwords or sessio
 
 ```sh
 docker build --platform linux/amd64 \
-  --build-arg NEXT_PUBLIC_SITE_URL=https://advisor.elizabethjudithmartinez.com \
+  --build-arg NEXT_PUBLIC_SITE_URL=https://dashboard.elizabethjudithmartinez.com \
   --build-arg NEXT_PUBLIC_IMAGE_SERVER=https://YOUR-QUOTE-SERVER \
   -t martinez-web:local .
 ```
 
 Supply other public settings used by your deployment with the corresponding Docker build arguments.
 Next.js embeds browser-facing `NEXT_PUBLIC_*` settings at build time; changing runtime settings does
-not update the browser bundle. The image builds articles from bundled JSON for a reproducible build.
+not update the browser bundle. This image contains only the dashboard, authentication pages, admin, and API routes.
 
 For a local production smoke test, use a private, untracked runtime environment file:
 
@@ -33,22 +33,24 @@ docker run --rm --env-file .env.local \
 
 Visit http://localhost:8085. Local cookies may require HTTPS depending on your production session settings.
 
-### Local validation completed
+### Dashboard-only deployment
 
-The Linux/AMD64 image `martinez-web:local` was built and smoke-tested with 0.5 CPU and 1 GiB RAM.
-The test container is named `martinez-local-smoke` and listens on http://localhost:8085.
+`simple-next-ts` now serves only authentication, dashboard/admin pages, and APIs.
+The public landing site remains in the separate `landing-page` project.
+Deploy this app at `dashboard.elizabethjudithmartinez.com`. `/` redirects to `/login`.
+Former landing, article, about, FAQ, stocks, and public investment routes return 404.
+There is no sitemap or public-site structured data. All pages use `noindex, nofollow`,
+and robots.txt disallows crawling.
 
-Verified: homepage, login, registration, admin login, sitemap, robots, manifest, logo, 39 JS/CSS
-assets, runtime image optimization, anonymous dashboard redirects, MongoDB connectivity, and
-reading the shared five-coin snapshot. The runtime is non-root and contains no `.env` files.
-Database-writing dummy routes are explicitly dynamic so the image build does not execute them.
+Set Azure's runtime `NEXT_PUBLIC_SITE_URL` and any `DOMAIN` setting to the dashboard
+host as appropriate (`NEXT_PUBLIC_SITE_URL` includes `https://`). Configure the new
+custom hostname and HTTPS in Azure before switching traffic. GitHub's Docker build
+and scheduled workflows already target the dashboard hostname in source; they take
+effect after these changes are pushed. This does not update Azure/DNS automatically.
 
-Authenticated browser flows, email delivery, payment flows, and Azure networking remain to be
-tested. Stop the local test container when finished:
-
-```sh
-docker stop martinez-local-smoke
-```
+The prior image smoke test covered the old public-site version. Rebuild the image
+before deploying this dashboard-only version. Authenticated browser flows, email,
+payments, and the Azure hostname require verification after deployment.
 
 ## Required before production
 

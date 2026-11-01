@@ -4,7 +4,6 @@ const ROOTS = {
   AUTH: '/auth',
   DASHBOARD: '/dashboard',
   ADMIN: '/admin',
-  ARTICLES: '/articles',
 };
 
 // ----------------------------------------------------------------------
@@ -50,16 +49,6 @@ export const paths = {
     withdrawal: `${ROOTS.ADMIN}/withdrawal`,
     login: `${ROOTS.ADMIN}/login`,
   },
-  // ARTICLES
-  articles: {
-    slug: (slug: string) => `${ROOTS.ARTICLES}/${slug}`,
-  },
-  // PUBLIC PAGES
-  about: '/about',
-  faq: '/faq',
-  invest: '/invest',
-  stocks: '/stocks',
-  cryptocurrency: '/cryptocurrency',
   resetPassword: '/reset-password',
   notFound: '/404',
 };

@@ -12,4 +12,4 @@ jobs:
         run: |
           curl --fail-with-body --silent --show-error --max-time 120 \
             --request POST \
-            'https://advisor.elizabethjudithmartinez.com/api/update-coin-prices'
+            'https://dashboard.elizabethjudithmartinez.com/api/update-coin-prices'

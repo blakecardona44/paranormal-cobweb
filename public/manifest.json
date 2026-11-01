@@ -1,8 +1,8 @@
 {
-  "name": "Elizabeth Judith Martinez | Financial Services",
+  "name": "Elizabeth Judith Martinez | Dashboard",
   "short_name": "Elizabeth Judith Martinez",
   "display": "standalone",
-  "start_url": "/",
+  "start_url": "/login",
   "theme_color": "#000000",
   "background_color": "#ffffff",
   "icons": [

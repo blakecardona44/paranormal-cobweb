@@ -46,6 +46,9 @@ export async function GET() {
       newDate = new Date(2023, 2, 10);
     }
 
+    // Catch-up requests must not create entries dated in the future.
+    newDate = new Date(Math.min(newDate.getTime(), Date.now()));
+
     const data = {
       firstName: first_name,
       lastName: last_name,

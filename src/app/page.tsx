@@ -1,23 +1,7 @@
-import LandingLayout from 'src/components/landing-layout/LandingLayout';
-import HomePageContent from './home-content';
-import { getBlogArticles } from '@/lib/articles';
-import { Metadata } from 'next';
+import { redirect } from 'next/navigation';
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, '') ||
-  'https://advisor.elizabethjudithmartinez.com';
+export const dynamic = 'force-dynamic';
 
-export const metadata: Metadata = {
-  alternates: {
-    canonical: `${SITE_URL}`,
-  },
-};
-export default async function HomePage() {
-  const articles = await getBlogArticles();
-
-  return (
-    <LandingLayout>
-      <HomePageContent initialArticles={articles} />
-    </LandingLayout>
-  );
+export default function HomePage() {
+  redirect('/login');
 }
