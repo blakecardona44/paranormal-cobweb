@@ -73,9 +73,17 @@ jobs:
         run: |
           set -euo pipefail
           az extension add --name containerapp --upgrade --only-show-errors
+          if [ "$(az containerapp registry list --name "$CONTAINER_APP" --resource-group "$RESOURCE_GROUP" --query "[?server=='martinezregistry1031.azurecr.io'] | length(@)" --output tsv)" != "0" ]; then
+            az containerapp registry remove \
+              --name "$CONTAINER_APP" \
+              --resource-group "$RESOURCE_GROUP" \
+              --server martinezregistry1031.azurecr.io \
+              --output none
+          fi
           az containerapp update \
             --name "$CONTAINER_APP" \
             --resource-group "$RESOURCE_GROUP" \
             --image "$REGISTRY/$IMAGE_NAME:$GITHUB_SHA" \
+            --set-env-vars DOMAIN=dashboard.elizabethjudithmartinez.com NEXT_PUBLIC_SITE_URL=https://dashboard.elizabethjudithmartinez.com \
             --output none
           echo "Deployed $GITHUB_SHA to $CONTAINER_APP" >> "$GITHUB_STEP_SUMMARY"
